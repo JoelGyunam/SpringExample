@@ -13,8 +13,19 @@
  			#{birthday},
  			#{email},
  			#{introduce}
-		); 	
+				); 	
  	</insert>
+
+	<insert id="insertUserByObject" parameterType="com.joelinseoul.spring.ex.jsp.domain.User" useGeneratedKeys="true" keyProperty="id">
+	
+		INSERT INTO `new_user` (`name`,`yyyymmdd`,`email`,`introduce`)
+		VALUE (
+		 	#{name},
+ 			#{yyyymmdd},
+ 			#{email},
+ 			#{introduce}
+ 			); 	
+	</insert>
 
 	<select id = "selectlastUser" resultType = "com.joelinseoul.spring.ex.jsp.domain.User">
 		SELECT `id`,`name`,`yyyymmdd`,`email`,`introduce`,`createdAt`,`updatedAt`

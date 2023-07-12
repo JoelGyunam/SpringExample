@@ -20,6 +20,13 @@ public class UserService {
 		return count;
 	}
 	
+	
+	public int addUserByObject(User user){
+		int count = userRepository.insertUserByObject(user);
+		return count;
+	}
+	
+	
 	// 가장 최근데 등록된 사용자 등록 정보 얻기
 	
 	public User getLastUser() {
