@@ -18,4 +18,7 @@ public interface NewUserRepository {
 			,@Param("email")String email
 			,@Param("introduce")String introduce
 			);
+	
+	
+	public int selectCountEmail(@Param("email") String email);
 }

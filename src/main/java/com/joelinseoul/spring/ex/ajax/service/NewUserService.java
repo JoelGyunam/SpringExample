@@ -29,4 +29,16 @@ public class NewUserService {
 		int count = newUserRepository.insertUser(name, birthday, email, introduce);
 		return count;
 	}
+	
+	//전달된 이메일이 이미 있는 지 확인하는 method
+	public boolean isDuplicatedEmail(String email) {
+		
+		int count = newUserRepository.selectCountEmail(email);
+		
+		if(count == 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 }

@@ -9,12 +9,21 @@
 <body>
 	<h1>사용자 추가</h1>
 
-		<label>이름</label> <input type = "text" name = "name" id="name">
-		<label>생년월일</label> <input type = "text" name = "birthday" id="birthday">
-		<label>이메일</label> <input type = "text" name = "email" id="email">
-		<label>자기소개</label> <textarea rows="5" cols="50" name = "introduce" id="introduce"></textarea>
-		<button type="button" id="addBtn">추가</button>
-
+		<div>
+			<label>이름</label> <input type = "text" name = "name" id="name">
+		</div>
+		<div>	
+			<label>생년월일</label> <input type = "text" name = "birthday" id="birthday">
+		</div>
+		<div>				
+			<label>이메일</label> <input type = "text" name = "email" id="email">
+		</div>
+		<div>				
+			<label>자기소개</label> <textarea rows="5" cols="50" name = "introduce" id="introduce"></textarea>
+		</div>
+		<div>				
+			<button type="button" id="addBtn">추가</button>
+		</div>
 
 	<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 	<script>
