@@ -17,6 +17,7 @@
 		</div>
 		<div>				
 			<label>이메일</label> <input type = "text" name = "email" id="email">
+			<button id="emailDupCheck">중복확인</button>
 		</div>
 		<div>				
 			<label>자기소개</label> <textarea rows="5" cols="50" name = "introduce" id="introduce"></textarea>
@@ -28,6 +29,34 @@
 	<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 	<script>
 		$(document).ready(function(){
+				var emailDupChecked = false;
+			
+			$("#email").keyup(function(event){
+				emailDupChecked = false;
+			})
+				
+				
+			$("#emailDupCheck").on("click",function(){
+				let email = $("#email").val();
+				
+				$.ajax({
+					type:"get"
+					,url:"/ajax/user/email_confirm"
+					,data:{"email":email}
+					,success: function(data){
+						if(data.isDuplicated === false){
+						alert(" 사용 가능한 이메일입니다.");
+						emailDupChecked = true;
+						} else{
+						alert("사용이 불가능한 이메일입니다.");
+						}
+					}
+					,error:function(){
+						alert("이메일 중복확인에 실패했습니다.");
+					}
+				})
+			});
+			
 			
 			$("#addBtn").on("click",function(){
 				//유효성 검사
@@ -52,6 +81,11 @@
 					alert("소개를 입력하세요");
 					return;
 				}
+				if(emailDupChecked == false){
+					alert("이메일 중복확인을 해주세요.");
+					return;
+				}
+				
 				
 				$.ajax({
 					type:"get"
