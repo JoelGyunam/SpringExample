@@ -1,5 +1,8 @@
 package com.joelinseoul.spring.ex.jpa;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.joelinseoul.spring.ex.jpa.domain.Student;
+import com.joelinseoul.spring.ex.jpa.repository.StudentRepository;
 import com.joelinseoul.spring.ex.jpa.service.StudentService;
 
 @RequestMapping("/jpa/student")
@@ -32,6 +36,9 @@ public class StudentController {
 	
 	@Autowired
 	private StudentService studentService;
+	
+	@Autowired
+	private StudentRepository studentRepository;
 	
 	@GetMapping("/create")
 	@ResponseBody
@@ -63,5 +70,49 @@ public class StudentController {
 		// id가 3인 행 삭제
 		studentService.deleteStudent(3);
 		return "삭제 성공";
+	};
+	
+	@GetMapping("/select")
+	@ResponseBody
+	public List<Student> selectStudent() {
+//		모든 행 조회
+//		List<Student> studentList = studentRepository.findAll();
+//		return studentList;
+		
+//		id기준 전체 내림차준 정렬.
+//		List<Student> orderById = studentRepository.findAllByOrderByIdDesc();
+//		return orderById;
+		
+//		OrderBy		
+//		List<Student> findTop1 = studentRepository.findTop1ByOrderByIdDesc();
+//		return findTop1;
+		
+//		name 칼럼 기준 조회
+//		List<Student> findByName = studentRepository.findByName("유재석");
+//		return findByName;
+		
+//		List<String> nameList = new ArrayList<>();
+//		nameList.add("유재석");
+//		nameList.add("조세호");
+//		List<Student> find = studentRepository.findByNameIn(nameList);
+//		return find;
+		
+//		List<Student> findContainsEmail = studentRepository.findByEmailContaining("naver");
+//		return findContainsEmail;
+		
+//		List<Student> findContainsName = studentRepository.findByNameStartingWith("조");
+//		return findContainsName;
+
+//		id 1~3 사이
+		List<Student> findByIdBetween = studentRepository.findByIdBetweenOrderByIdDesc(1, 4);
+		return findByIdBetween;
+		
+	};
+	
+	@GetMapping("/native")
+	@ResponseBody
+	public List<Student> nativeStudent(){
+		List<Student> findByJobNative = studentRepository.findByDreamJobNative("모델");
+		return findByJobNative;
 	};
 }
